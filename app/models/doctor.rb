@@ -2,7 +2,7 @@ class Doctor
   include Mongoid::Document
 
   field :name, type: String
-  field :hospital, type: String
+  field :hosp, type: String
   field :phone, type: String
   field :address, type: String
   field :div, as: :division, type: String
