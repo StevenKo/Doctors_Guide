@@ -43,6 +43,7 @@ group :development, :test do
   gem 'rspec-rails'
   gem 'byebug'
   gem 'mongoid-rspec', '3.0.0'
+  gem 'nokogiri'
 end
 
 group :development do

@@ -193,6 +193,7 @@ DEPENDENCIES
   jquery-rails
   mongoid!
   mongoid-rspec (= 3.0.0)
+  nokogiri
   rails (= 4.2.4)
   rspec-rails
   sass-rails (~> 5.0)
