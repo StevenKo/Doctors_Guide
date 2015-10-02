@@ -10,7 +10,7 @@ class Hospital
   field :divs, as: :divisions, type: Array
   field :cHours, as: :clinic_hours, type: Hash
 
-  field :url, type: String
+  field :nhi_url, type: String
   field :assess, type: String
 
 

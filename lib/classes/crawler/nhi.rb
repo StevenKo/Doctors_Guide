@@ -6,7 +6,7 @@ class Crawler::Nhi
     nodes = @page_html.css('[id*="lblHospName"] a')
     nodes.each do |node|
       h = Hospital.new
-      h.url = node[:href]
+      h.nhi_url = node[:href]
       h.save
     end
   end
