@@ -14,12 +14,12 @@ describe "nhi_hospitals" do
     expect(links.size).to be > 0
   end
 
-  it "write nhi_url to hospital db" do
+  it "write nhiUrl to hospital db" do
     @c.crawle_hospital_urls
     hospital = Hospital.first
 
     expect(hospital).not_to be nil
-    expect(hospital.nhi_url).not_to be nil
+    expect(hospital.nhiUrl).not_to be nil
   end
 
 end

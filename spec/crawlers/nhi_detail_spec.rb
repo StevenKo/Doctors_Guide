@@ -5,9 +5,9 @@ require 'classes/crawler/nhi'
 describe "nhi_crawler" do
 
   before(:all){ 
-    @hosp = Hospital.create(nhi_url: "http://www.nhi.gov.tw/Query/Query3_Detail.aspx?HospID=1101150011")
+    @hosp = Hospital.create(nhiUrl: "http://www.nhi.gov.tw/Query/Query3_Detail.aspx?HospID=1101150011")
     @c = Crawler::Nhi.new
-    @c.fetch @hosp.nhi_url
+    @c.fetch @hosp.nhiUrl
     @c.crawl_detail @hosp
   }
 
