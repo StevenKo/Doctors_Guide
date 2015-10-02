@@ -8,9 +8,6 @@ gem 'rails', '4.2.4'
 gem 'mongoid', :git => 'https://github.com/mongodb/mongoid.git'
 gem 'bson_ext'
 
-# test
-gem 'rspec-rails'
-
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'
 # Use Uglifier as compressor for JavaScript assets
@@ -42,8 +39,14 @@ group :development, :test do
   gem 'factory_girl_rails'
   gem 'rspec-rails'
   gem 'byebug'
+  gem 'pry'
+  gem 'pry-nav'
   gem 'mongoid-rspec', '3.0.0'
   gem 'nokogiri'
+end
+
+group :test do
+  gem 'database_cleaner', :git => 'https://github.com/DatabaseCleaner/database_cleaner.git'
 end
 
 group :development do
