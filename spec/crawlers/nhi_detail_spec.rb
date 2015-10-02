@@ -44,6 +44,4 @@ describe "nhi_crawler" do
     expect(@hosp.divs).to match_array(divisions)
   end
 
-  pending("clinic_hours getting finished")
-
 end

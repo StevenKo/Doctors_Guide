@@ -9,7 +9,12 @@ describe "commonhealth_crawler" do
     index_url = "http://www.commonhealth.com.tw/medical/findHospital.action?&policlinic=0&page=2"
     c = Crawler::Commonhealth.new
     c.fetch index_url
-    c.crawl_common_url
+    c.crawl_co_urls
+
+    hospital = Hospital.first
+
+    expect(hospital).not_to be nil
+    expect(hospital.coUrl).not_to be nil
   end
 
 end
