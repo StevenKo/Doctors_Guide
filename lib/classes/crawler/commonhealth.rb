@@ -65,4 +65,73 @@ class Crawler::Commonhealth
     hosp.save
   end
 
+  def crawl_co_doctors_url
+    nodes = @page_html.css('.commonDrList a')
+    nodes.each do |node|
+      next if node[:href].include?("javascript")
+      link = node[:href]
+      name = node.css('img')[0][:alt]
+
+      d = Doctor.find_or_initialize_by(name: name)
+      d.coUrl = link
+      d.save
+    end
+  end
+
+  def crawl_doctor_detail doctor
+    name = @page_html.css(".commonDrContentMain h2.commonGreen").text
+
+    lis = @page_html.css(".commonDrContentMain li")
+    div = ""
+    lis.each do |li|
+      span = li.css("span")
+      if span.text == "科別 ："
+        li.css("span").remove
+        div = li.text.strip
+      end
+    end
+
+    exp = ""
+    lis.each do |li|
+      span = li.css("span")
+      if span.text == "經歷 ："
+        li.css("span").remove
+        exp = li.text.strip
+      end
+    end
+
+    specialty = ""
+    lis.each do |li|
+      span = li.css("span")
+      if span.text == "專長 ："
+        li.css("span").remove
+        specialty = li.text.strip
+      end
+    end
+
+    hosp_a = @page_html.css(".findDrInner li a")
+    hosp = hosp_a[0].css("strong").text.gsub("醫院：","")
+    address = hosp_a[0].css("span")[0].text.gsub("地址：","")
+    phone = hosp_a[0].css("span")[1].text.gsub("電話：","")
+
+    hospital = Hospital.find_or_initialize_by(name: hosp)
+    if hospital.new_record?
+      hospital.address = address
+      hospital.phone = phone
+      hospital.save
+    end
+
+    doctor.hospitals << hospital
+
+    doctor.name = name
+    doctor.div = div
+    doctor.exp = exp
+    doctor.spe = specialty
+    doctor.hosp = hosp
+    doctor.address = address
+    doctor.phone = phone
+    doctor.save
+
+  end
+
 end
