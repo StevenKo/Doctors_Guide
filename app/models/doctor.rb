@@ -12,5 +12,8 @@ class Doctor
   field :coUrl, type: String
   field :bUrl, type: String
 
+  index({ name: 1 })
+  index({ div: 1 })
+
   has_and_belongs_to_many :hospitals, index: true
 end

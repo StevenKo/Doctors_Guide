@@ -40,15 +40,15 @@ describe "commonhealth_doctor_crawler" do
     expect(@doc.spe).to eq("腦中風頭部外傷、脊髓損傷、運動傷害、腦性麻痺、感覺統合等復健、肥胖症之診斷、預防、治療及研究兒童肥胖、產後肥胖、減肥藥物諮詢、運動減肥及減重班課程")
   end
 
-  it "crawl doctro's hospital" do
+  it "crawl doctor's hospital" do
     expect(@doc.hosp).to eq("衛生福利部雙和醫院")
   end
 
-  it "crawl doctro's phone" do
+  it "crawl doctor's phone" do
     expect(@doc.phone).to eq("(02)22490088")
   end
 
-  it "crawl doctro's address" do
+  it "crawl doctor's address" do
     expect(@doc.address).to eq("新北市中和區中正路291號")
   end
 
