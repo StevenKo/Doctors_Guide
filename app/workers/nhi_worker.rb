@@ -1,7 +1,6 @@
 # encoding: utf-8
 class NhiWorker
   include Sidekiq::Worker
-  sidekiq_options queue: "nhi", :retry => 2
   
   def perform(hosp_id)
     hosp = Hospital.find(hosp_id)
