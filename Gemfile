@@ -49,6 +49,7 @@ group :development, :test do
   gem 'capistrano-rails'
   gem 'capistrano-bundler'
   gem 'capistrano-rbenv'
+  gem 'capistrano-sidekiq'
 end
 
 group :test do
