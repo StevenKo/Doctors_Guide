@@ -98,3 +98,12 @@ namespace :deploy do
   after 'deploy:publishing', 'deploy:restart'
 end
 
+namespace :deployrake do
+  task :runrake do  
+    on roles(:all), in: :sequence, wait: 5 do      
+      within release_path do
+        execute :rake, ENV['task'], "RAILS_ENV=production"
+      end 
+    end
+  end
+end
