@@ -13,7 +13,7 @@ describe "businessweekly_crawler" do
   }
 
   it "crawel doctors url" do
-    index_url = "http://health.businessweekly.com.tw/GSearchDoc.aspx?pro=0000&t=1&p=1"
+    index_url = "http://health.businessweekly.com.tw/GSearchDoc.aspx?pro=0000&t=0&s=9&p=1"
     c = Crawler::Businessweekly.new
     c.fetch index_url
     c.crawl_bw_doctors_url

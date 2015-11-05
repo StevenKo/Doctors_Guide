@@ -24,4 +24,10 @@ namespace :crawl do
       CommonhealthDocWorker.perform_async(page)
     end
   end
+
+  task :crawl_businessweekly_doctors => :environment do
+    (1..2).each do |page|
+      BusinessweeklyDocWorker.perform_async(page)
+    end
+  end
 end

@@ -5,10 +5,12 @@ class Crawler::Businessweekly
   def crawl_bw_doctors_url
     nodes = @page_html.css('.searchresults a')
     nodes.each do |node|
-      link = node[:href]
+      link = get_url(node[:href])
 
       d = Doctor.find_or_initialize_by(bUrl: link)
       d.save
+
+      BusinessweeklyDoctorDetailWorker.perform_async(d.id)
     end
   end
 
@@ -29,7 +31,7 @@ class Crawler::Businessweekly
       strong = li.css("strong")
       if strong.text.match(/電.*話/)
         li.css("strong").remove
-        phone = li.text.strip
+        phone = li.text.strip.gsub(" ","")
       end
     end
 
