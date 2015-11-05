@@ -5,7 +5,7 @@ module Crawler
   require 'open-uri'
   require 'net/http'
   
-  attr_accessor :page_url, :page_html, :fake_browser_urls, :do_not_encode_urls, :match_url_pattern, :url_host, :url_path, :url_query, :url_proto
+  attr_accessor :page_url, :page_html, :fake_browser_urls, :do_not_encode_urls, :match_url_pattern, :url_host, :url_path, :url_query, :url_proto, :url_path_without_tail
   
   def parse_url url
     /^((http[s]?|ftp):\/)?\/?([^:\/\s]+)((\/\w+)*\/)([\w\-\.]+[^#?\s]+)(.*)?(#[\w\-]+)?$/ =~ url
@@ -16,10 +16,11 @@ module Crawler
     else
       @url_path = $4 + $6
     end
+    @url_path_without_tail = $4
     @url_query = $7
   end
 
-  def get_article_url href
+  def get_url href
     return href unless href.present?
     if href.start_with?("http")
       href
@@ -28,7 +29,7 @@ module Crawler
     elsif href.include? "html"
       @url_proto + "://" + @url_host + @url_path + href + @url_query
     else
-      href
+      @url_proto + "://" + @url_host + @url_path_without_tail + href
     end
   end
 
@@ -52,6 +53,7 @@ module Crawler
   end
 
   def post_fetch url, option
+    parse_url url
     @page_url = url
     url = URI.parse(url)
     resp, data = Net::HTTP.post_form(url, option)
