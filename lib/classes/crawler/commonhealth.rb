@@ -114,15 +114,17 @@ class Crawler::Commonhealth
     end
 
     hosp_a = @page_html.css(".findDrInner li a")
-    hosp = hosp_a[0].css("strong").text.gsub("醫院：","")
-    address = hosp_a[0].css("span")[0].text.gsub("地址：","")
-    phone = hosp_a[0].css("span")[1].text.gsub("電話：","")
+    if hosp_a.present?
+      hosp = hosp_a[0].css("strong").text.gsub("醫院：","")
+      address = hosp_a[0].css("span")[0].text.gsub("地址：","")
+      phone = hosp_a[0].css("span")[1].text.gsub("電話：","")
 
-    hospital = Hospital.find_or_initialize_by(name: hosp)
-    if hospital.new_record?
-      hospital.address = address
-      hospital.phone = phone
-      hospital.save
+      hospital = Hospital.find_or_initialize_by(name: hosp)
+      if hospital.new_record?
+        hospital.address = address
+        hospital.phone = phone
+        hospital.save
+      end
     end
 
     doctor.hospitals << hospital
