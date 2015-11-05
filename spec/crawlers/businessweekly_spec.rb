@@ -34,6 +34,15 @@ describe "businessweekly_crawler" do
 
   it "crawl doctro's hospital" do
     expect(@doc.hosp).to eq("五福診所")
+    expect(@doc.hospitals.count).to be > 0
+  end
+
+  it "crawl hospital detail if hospital not exist" do
+    @hosp = @doc.hospitals[0]
+    expect(@hosp.address).not_to be nil
+    expect(@hosp.phone).not_to be nil
+    expect(@hosp.services).not_to be nil
+    expect(@hosp.divisions).not_to be nil
   end
 
   it "crawl doctor's phone" do
