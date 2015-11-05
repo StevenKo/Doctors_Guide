@@ -35,6 +35,8 @@ gem 'unicorn'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
+gem 'sidekiq'
+
 group :development, :test do
   gem 'factory_girl_rails'
   gem 'rspec-rails'

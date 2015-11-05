@@ -9,9 +9,7 @@ namespace :crawl do
   task :crawl_nhi_hospitals_detail => :environment do
     hosps = Hospital.all
     hosps.each do |hosp|
-      @c = Crawler::Nhi.new
-      @c.fetch hosp.nhiUrl
-      @c.crawl_detail hosp
+      NhiWorker.perform_async(hosp.id)
     end
   end
 end
