@@ -9,6 +9,7 @@ class Hospital
   field :ss, as: :services, type: Array
   field :divs, as: :divisions, type: Array
   field :cHours, as: :clinic_hours, type: Hash
+  field :on, type: Boolean
 
   field :nhiUrl, type: String
   field :coUrl, type: String

@@ -3,11 +3,20 @@ class Crawler::Nhi
   include Crawler
   
   def crawle_hospital_urls
-    nodes = @page_html.css('[id*="lblHospName"] a')
-    nodes.each do |node|
+    trs = @page_html.css('#gvQuery3Data tr')
+    trs.shift
+    trs.each do |tr|
+      tds = tr.css("td")
       h = Hospital.new
-      h.nhiUrl = get_url(node[:href])
+      if tds[3].text.strip.blank?
+        h.on = true
+      else
+        h.on = false
+      end
+      a_node = tr.css('[id*="lblHospName"] a')
+      h.nhiUrl = get_url(a_node[0][:href])
       h.save
+      NhiWorker.perform_async(h.id)
     end
   end
 

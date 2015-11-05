@@ -20,6 +20,7 @@ describe "nhi_hospitals" do
 
     expect(hospital).not_to be nil
     expect(hospital.nhiUrl).not_to be nil
+    expect(hospital.on).not_to be nil
   end
 
 end
