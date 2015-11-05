@@ -25,7 +25,7 @@ module Crawler
     if href.start_with?("http")
       href
     elsif href.start_with?("/")
-      @url_proto + "://" + @url_host + href + @url_query
+      @url_proto + "://" + @url_host + href
     elsif href.include? "html"
       @url_proto + "://" + @url_host + @url_path + href + @url_query
     else

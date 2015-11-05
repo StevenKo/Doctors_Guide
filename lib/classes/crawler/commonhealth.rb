@@ -6,12 +6,14 @@ class Crawler::Commonhealth
     nodes = @page_html.css('.commonDrList a')
     nodes.each do |node|
       next if node[:href].include?("javascript")
-      link = node[:href]
+      link = get_url(node[:href])
       name = node.css('img')[0][:alt]
 
       h = Hospital.find_or_initialize_by(name: name)
       h.coUrl = link
       h.save
+
+      CommonhealthHospDetailWorker.perform_async(h.id)
     end
   end
 

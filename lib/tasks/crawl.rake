@@ -12,4 +12,10 @@ namespace :crawl do
       NhiWorker.perform_async(hosp.id)
     end
   end
+
+  task :crawl_commonhealth_hospitals => :environment do
+    (1..2).each do |page|
+      CommonhealthHospWorker.perform_async(page)
+    end
+  end
 end
