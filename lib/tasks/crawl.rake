@@ -18,4 +18,10 @@ namespace :crawl do
       CommonhealthHospWorker.perform_async(page)
     end
   end
+
+  task :crawl_commonhealth_doctors => :environment do
+    (1..2).each do |page|
+      CommonhealthDocWorker.perform_async(page)
+    end
+  end
 end

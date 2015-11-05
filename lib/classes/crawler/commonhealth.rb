@@ -75,8 +75,10 @@ class Crawler::Commonhealth
       name = node.css('img')[0][:alt]
 
       d = Doctor.find_or_initialize_by(name: name)
-      d.coUrl = link
+      d.coUrl = get_url(link)
       d.save
+
+      CommonhealthDoctorDetailWorker.perform_async(d.id)
     end
   end
 
