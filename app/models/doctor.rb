@@ -12,6 +12,8 @@ class Doctor
   field :coUrl, type: String
   field :bUrl, type: String
 
+  index({ coUrl: 1 } , { sparse: true, unique: true } )
+  index({ bUrl: 1 } , { sparse: true, unique: true } )
   index({ name: 1 })
   index({ div: 1 })
 
