@@ -22,6 +22,7 @@ class Crawler::Businessweekly
       strong = li.css("strong")
       if strong.text.match(/診療科別/)
         li.css("strong").remove
+        binding.pry
         divs = li.text.strip.gsub(" ","").split("、").map {|s| s.strip }
       end
     end
@@ -55,8 +56,8 @@ class Crawler::Businessweekly
 
     hosp.phone = phone
     hosp.address = addr
-    hosp.services = services
-    hosp.divisions = divs
+    hosp.services = (services.blank?)? [] : services
+    hosp.divisions = (divs.blank?)? [] : divs
     hosp.save
   end
 
@@ -100,7 +101,7 @@ class Crawler::Businessweekly
     if hospital.new_record?
       hospital.save
       @c = Crawler::Businessweekly.new
-      @c.fetch "http://health.businessweekly.com.tw/JHospital.aspx?id=HOSP000000059"
+      @c.fetch hosp_link
       @c.crawl_hosp_detail hospital
     end
 
