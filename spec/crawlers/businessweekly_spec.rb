@@ -32,7 +32,7 @@ describe "businessweekly_crawler" do
     expect(@doc.div).to eq("眼科")
   end
 
-  it "crawl doctro's hospital" do
+  it "crawl doctor's hospital" do
     expect(@doc.hosp).to eq("五福診所")
     expect(@doc.hospitals.count).to be > 0
   end

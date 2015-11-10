@@ -22,7 +22,6 @@ class Crawler::Businessweekly
       strong = li.css("strong")
       if strong.text.match(/診療科別/)
         li.css("strong").remove
-        binding.pry
         divs = li.text.strip.gsub(" ","").split("、").map {|s| s.strip }
       end
     end
