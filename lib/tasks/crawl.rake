@@ -1,17 +1,22 @@
 # encoding: utf-8
 namespace :crawl do
   task :crawl_nhi_hospitals => :environment do
+    
+    # 26筆
     @c = Crawler::Nhi.new
     @c.post_fetch("http://www.nhi.gov.tw/Query/query3_list.aspx",{SpecialCode: 1, PageNum: 100})
     @c.crawle_hospital_urls
 
+    # 85 筆
     @c.post_fetch("http://www.nhi.gov.tw/Query/query3_list.aspx",{SpecialCode: 2, PageNum: 100})
     @c.crawle_hospital_urls
 
-    @c.post_fetch("http://www.nhi.gov.tw/Query/query3_list.aspx",{SpecialCode: 3, PageNum: 100})
+    # 392 筆
+    @c.post_fetch("http://www.nhi.gov.tw/Query/query3_list.aspx",{SpecialCode: 3, PageNum: 400})
     @c.crawle_hospital_urls
 
-    @c.post_fetch("http://www.nhi.gov.tw/Query/query3_list.aspx",{SpecialCode: 4, PageNum: 100})
+    # 21841 筆
+    @c.post_fetch("http://www.nhi.gov.tw/Query/query3_list.aspx",{SpecialCode: 4, PageNum: 22000})
     @c.crawle_hospital_urls
   end
 

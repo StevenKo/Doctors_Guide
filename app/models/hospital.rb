@@ -15,6 +15,6 @@ class Hospital
   field :coUrl, type: String
   field :assess, type: String
 
-  index({ name: 1 }, { sparse: true, unique: true })
+  index({ name: 1 })
   has_and_belongs_to_many :doctors, index: true
 end
