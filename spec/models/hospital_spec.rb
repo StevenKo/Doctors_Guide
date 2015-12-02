@@ -6,5 +6,5 @@ RSpec.describe Hospital, type: :model do
   it { is_expected.to have_field(:cHours).with_alias(:clinic_hours) }
   it { is_expected.to have_field(:divs).with_alias(:divisions) }
   it { is_expected.to have_field(:ss).with_alias(:services) }
-  it { is_expected.to have_index_for(name: 1).with_options(sparse: true, unique: true) }
+  it { is_expected.to have_index_for(name: 1) }
 end
