@@ -36,6 +36,7 @@ gem 'unicorn'
 # gem 'capistrano-rails', group: :development
 
 gem 'sidekiq'
+gem "skylight"
 
 group :development, :test do
   gem 'factory_girl_rails'
