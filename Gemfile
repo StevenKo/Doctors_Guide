@@ -41,7 +41,6 @@ gem "skylight"
 group :development, :test do
   gem 'factory_girl_rails'
   gem 'rspec-rails'
-  gem 'byebug'
   gem 'pry'
   gem 'pry-nav'
   gem 'mongoid-rspec', '3.0.0'
