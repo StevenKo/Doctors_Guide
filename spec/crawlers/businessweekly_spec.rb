@@ -2,10 +2,9 @@ require 'rails_helper'
 require 'classes/crawler'
 require 'classes/crawler/businessweekly'
 
-
 describe "businessweekly_crawler" do
 
-  before(:all){ 
+  before(:all){
     @doc = Doctor.create(bUrl: "http://health.businessweekly.com.tw/IDoctor.aspx?id=DOC0000002059")
     @c = Crawler::Businessweekly.new
     @c.fetch @doc.bUrl
@@ -60,5 +59,5 @@ describe "businessweekly_crawler" do
   it "crawl experience" do
     expect(@doc.exp).to eq("北醫台大長庚臨床教授、美國眼科及外科學院院士、Woodriver Township Hospital醫師")
   end
-  
+
 end

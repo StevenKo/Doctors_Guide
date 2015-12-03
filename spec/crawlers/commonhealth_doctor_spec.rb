@@ -2,10 +2,9 @@ require 'rails_helper'
 require 'classes/crawler'
 require 'classes/crawler/commonhealth'
 
-
 describe "commonhealth_doctor_crawler" do
 
-  before(:all){ 
+  before(:all){
     @doc = Doctor.create(coUrl: "http://www.commonhealth.com.tw/medical/doctorInfo.action?nid=25")
     @c = Crawler::Commonhealth.new
     @c.fetch @doc.coUrl

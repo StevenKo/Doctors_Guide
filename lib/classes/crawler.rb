@@ -1,12 +1,12 @@
 # encoding: utf-8
 module Crawler
-  
+
   require 'nokogiri'
   require 'open-uri'
   require 'net/http'
-  
+
   attr_accessor :page_url, :page_html, :fake_browser_urls, :do_not_encode_urls, :match_url_pattern, :url_host, :url_path, :url_query, :url_proto, :url_path_without_tail
-  
+
   def parse_url url
     /^((http[s]?|ftp):\/)?\/?([^:\/\s]+)((\/\w+)*\/)([\w\-\.]+[^#?\s]+)(.*)?(#[\w\-]+)?$/ =~ url
     @url_proto = $2
@@ -37,7 +37,7 @@ module Crawler
     @fake_browser_urls = ['00xs.com','www.7788xiaoshuo.com',"book.rijigu.com","yueduxs.com","b.faloo.com","www.ttzw.com","www.8535.org","6ycn.net","www.readnovel.com","www.d586.com","www.fftxt.com","www.bixiage.com"]
     @do_not_encode_urls = ['ixs.cc','quledu.com','tw.xiaoshuokan.com','7788xiaoshuo.com','wcxiaoshuo.com','2dollars.com.tw','dushi800','59to.org','book.sfacg','ranwenba','shushu5','kushuku','feiku.com','daomubiji','luoqiu.com','kxwxw','txtbbs.com','tw.57book','b.faloo.com/p/','9pwx.com']
     @page_url = url
-    get_page(@page_url)   
+    get_page(@page_url)
   end
 
   def fetch_without_nokogiri url
@@ -45,7 +45,7 @@ module Crawler
     body = ''
     begin
       open(url){ |io|
-          body = io.read
+        body = io.read
       }
     rescue
     end
@@ -59,14 +59,14 @@ module Crawler
     resp, data = Net::HTTP.post_form(url, option)
     @page_html = Nokogiri::HTML(resp.body)
   end
-  
+
   def get_page url
-    
+
     @page_url = url
     body = ''
     begin
       open(url){ |io|
-          body = io.read
+        body = io.read
       }
     rescue
     end
@@ -132,10 +132,10 @@ module Crawler
     elsif (/\.\./ =~ src)
       src = dns + src[2..src.length]
     else
-      src 
+      src
     end
   end
-  
+
   def parse_dns
     url_scan = @page_url.scan(/.*?\//)
     dns = url_scan[0] + url_scan[1] + url_scan[2]
@@ -163,5 +163,5 @@ module Crawler
     end
   end
 
-  
+
 end

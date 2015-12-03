@@ -4,13 +4,12 @@ require 'classes/crawler/nhi'
 
 describe "nhi_crawler" do
 
-  before(:all){ 
+  before(:all){
     @hosp = Hospital.create(nhiUrl: "http://www.nhi.gov.tw/Query/Query3_Detail.aspx?HospID=1101150011")
     @c = Crawler::Nhi.new
     @c.fetch @hosp.nhiUrl
     @c.crawl_detail @hosp
   }
-
 
   it "code" do
     expect(@hosp.code).to eq("1101150011")

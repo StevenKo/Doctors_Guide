@@ -2,7 +2,6 @@ require 'rails_helper'
 require 'classes/crawler'
 require 'classes/crawler/commonhealth'
 
-
 describe "commonhealth_crawler" do
 
   before(:all){ 
